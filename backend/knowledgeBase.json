@@ -1,0 +1,40 @@
+{
+    "education": {
+      "keywords": ["education", "study", "studies", "college", "collage", "degree", "btech", "b.tech", "btech cse", "techno", "techno india", "t.i.n.j.r", "tinjr", "computer science", "engineer"],
+      "responses": [
+        "I am pursuing B.Tech in Computer Science Engineering at Techno India NJR.",
+        "Currently, I am a 3rd-year Computer Science Engineering student at Techno India NJR.",
+        "I am studying B.Tech in CSE at Techno India NJR, Udaipur."
+      ]
+    },
+    "experience": {
+      "keywords": ["experience", "work", "job", "internship", "intership", "alphaloops", "web developer", "webdev"],
+      "responses": [
+        "I interned at Alphaloops as a web developer for 3 months.",
+        "I gained professional experience as a web developer during my 3-month internship at Alphaloops.",
+        "At Alphaloops, I worked as a web developer intern and contributed to Makinzy and a game prediction model."
+      ]
+    },
+    "projects": {
+      "keywords": ["projects", "portfolio", "work", "apps", "applications", "websites", "crypto tracker", "consultify", "ecommerce", "e-commerce", "ai bot", "chatbot"],
+      "responses": [
+        "Some of my projects include an e-commerce website, a crypto tracker, and a portfolio site with a chatbot.",
+        "I have built several projects like a crypto tracker, an e-commerce website, and a personal chatbot for my portfolio.",
+        "Currently, I am working on Consultify, along with other projects like a portfolio and a crypto tracker."
+      ]
+    },
+    "skills": {
+      "keywords": ["skills", "abilities", "proficiencies", "programming", "technologies", "tech stack", "coding"],
+      "responses": [
+        "I have skills in JavaScript, React, Node.js, Python, MongoDB, and AWS.",
+        "My technical expertise includes frontend and backend technologies like React, Node.js, and Python.",
+        "I am proficient in full-stack development with skills in JavaScript, Python, and cloud services like AWS."
+      ]
+    },
+    "hobbies": {
+      "keywords": ["hobbies", "interests", "free time", "passion", "pastime", "likes"],
+      "responses": [
+        "I enjoy programming, reading, and exploring the latest technology trends."
+      ]
+    }
+}  
