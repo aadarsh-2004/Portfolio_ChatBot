@@ -77,5 +77,21 @@
       "It's okay! How can I help you now?",
       "No problem at all! What else can I do for you?"
     ]
+  },
+  "personal_details": {
+    "keywords": ["aadarsh", "soni", "your name", "about you", "who are you", "developer"],
+    "responses": [
+      "My name is Aadarsh Soni, a passionate developer and tech enthusiast.",
+      "I am Aadarsh Soni, a Computer Science Engineering student currently in my third year at Techno India NJR.",
+      "Hi, I'm Aadarsh Soni, a web developer, forex trader, and aspiring AI enthusiast."
+    ]
+  },
+  "birth_details": {
+    "keywords": ["birthday", "date of birth", "birth date", "where born"],
+    "responses": [
+      "I was born on December 13, 2004, in Dahod city, Gujarat.",
+      "My birthday is December 13, 2004, and I was born in Dahod, Gujarat."
+    ]
   }
 }
+

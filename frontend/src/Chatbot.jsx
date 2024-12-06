@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Chatbot = () => {
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [chat, setChat] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
 
   // Add a welcome message on component mount
   useEffect(() => {
     const welcomeMessage = {
-      sender: 'bot',
+      sender: "bot",
       text: "Hi there! I'm your assistant. How can I help you today?",
     };
     setChat([welcomeMessage]);
-
-    // Optionally play audio for welcome message
-    // playAudio(welcomeMessage.text); // Uncomment if you want to play audio for the welcome message
   }, []);
 
   const playAudio = (audioBase64) => {
@@ -26,30 +24,31 @@ const Chatbot = () => {
   const sendMessage = async () => {
     if (!message.trim()) return;
 
-    const newChat = [...chat, { sender: 'user', text: message }];
+    const newChat = [...chat, { sender: "user", text: message }];
     setChat(newChat);
-    setMessage('');
+    setMessage("");
     setIsTyping(true);
 
     try {
-      const response = await axios.post('http://localhost:5000/ask', { question: message });
+      const response = await axios.post("http://localhost:5000/ask", {
+        question: message,
+      });
 
       // Add the text response to chat
       setChat([
         ...newChat,
-        { sender: 'bot', text: response.data.answer },
+        { sender: "bot", text: response.data.answer },
       ]);
 
       // If the response includes audio, play it
       if (response.data.audio) {
         playAudio(response.data.audio);
       }
-
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
       setChat([
         ...newChat,
-        { sender: 'bot', text: "Sorry, I couldn't process that. Please try again!" },
+        { sender: "bot", text: "Sorry, I couldn't process that. Please try again!" },
       ]);
     } finally {
       setIsTyping(false);
@@ -57,14 +56,56 @@ const Chatbot = () => {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       e.preventDefault();
       sendMessage();
     }
   };
 
+  const handleMicClick = () => {
+    if (!("webkitSpeechRecognition" in window)) {
+      alert("Speech recognition is not supported in this browser. Please use Chrome.");
+      return;
+    }
+
+    const recognition = new window.webkitSpeechRecognition();
+    recognition.lang = "en-US";
+    recognition.continuous = false;
+
+    recognition.onstart = () => {
+      setIsRecording(true);
+    };
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setMessage(transcript);
+    };
+
+    recognition.onend = () => {
+      setIsRecording(false);
+      
+    };
+
+    recognition.onerror = (event) => {
+      console.error("Speech recognition error:", event.error);
+      setIsRecording(false);
+    };
+
+    recognition.start();
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center items-center">
+    <div className="min-h-screen bg-gray-100 flex justify-center items-center relative">
+      {/* Speak Now Popup */}
+      {isRecording && (
+        <div className="absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+            <h2 className="text-2xl font-bold mb-2">🎤 Speak Now</h2>
+            <p className="text-gray-700">Your microphone is on. Say something!</p>
+          </div>
+        </div>
+      )}
+
       <div className="w-full max-w-3xl bg-white shadow-lg rounded-2xl overflow-hidden">
         {/* Chat Header */}
         <div className="bg-blue-500 text-white py-4 px-6 flex items-center justify-between">
@@ -85,10 +126,10 @@ const Chatbot = () => {
             <div
               key={idx}
               className={`mb-4 flex ${
-                msg.sender === 'user' ? 'justify-end' : 'justify-start'
+                msg.sender === "user" ? "justify-end" : "justify-start"
               }`}
             >
-              {msg.sender === 'bot' && (
+              {msg.sender === "bot" && (
                 <img
                   src="https://img.freepik.com/free-vector/graident-ai-robot-vectorart_78370-4114.jpg"
                   alt="Bot"
@@ -97,9 +138,9 @@ const Chatbot = () => {
               )}
               <div
                 className={`px-4 py-3 rounded-lg max-w-sm ${
-                  msg.sender === 'user'
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-gray-200 text-gray-800'
+                  msg.sender === "user"
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200 text-gray-800"
                 }`}
               >
                 {msg.text}
@@ -109,18 +150,27 @@ const Chatbot = () => {
           {isTyping && (
             <div className="flex justify-start">
               <div className="px-4 py-3 rounded-lg bg-gray-200 text-gray-800 animate-pulse">
-                Typing<span className="dot1">.</span><span className="dot2">.</span><span className="dot3">.</span>
+                Typing<span className="dot1">.</span>
+                <span className="dot2">.</span>
+                <span className="dot3">.</span>
               </div>
             </div>
           )}
         </div>
 
         {/* Input Section */}
-        <div className="border-t border-gray-300 p-4 flex items-center">
+        <div className="border-t border-gray-300 p-4 flex items-center space-x-3">
+          <img
+            onClick={handleMicClick}
+            src="https://cdn-icons-png.flaticon.com/512/615/615219.png"
+            alt="Mic Icon"
+            className="w-8 h-8 cursor-pointer hover:scale-110 rounded-full transition-transform"
+          />
           <input
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            
             onKeyDown={handleKeyDown} // Send message on Enter
             placeholder="Type your message..."
             className="flex-grow bg-gray-200 text-gray-800 px-4 py-2 rounded-lg focus:outline-none"
