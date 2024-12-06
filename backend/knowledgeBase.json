@@ -1,40 +1,81 @@
 {
-    "education": {
-      "keywords": ["education", "study", "studies", "college", "collage", "degree", "btech", "b.tech", "btech cse", "techno", "techno india", "t.i.n.j.r", "tinjr", "computer science", "engineer"],
-      "responses": [
-        "I am pursuing B.Tech in Computer Science Engineering at Techno India NJR.",
-        "Currently, I am a 3rd-year Computer Science Engineering student at Techno India NJR.",
-        "I am studying B.Tech in CSE at Techno India NJR, Udaipur."
-      ]
-    },
-    "experience": {
-      "keywords": ["experience", "work", "job", "internship", "intership", "alphaloops", "web developer", "webdev"],
-      "responses": [
-        "I interned at Alphaloops as a web developer for 3 months.",
-        "I gained professional experience as a web developer during my 3-month internship at Alphaloops.",
-        "At Alphaloops, I worked as a web developer intern and contributed to Makinzy and a game prediction model."
-      ]
-    },
-    "projects": {
-      "keywords": ["projects", "portfolio", "work", "apps", "applications", "websites", "crypto tracker", "consultify", "ecommerce", "e-commerce", "ai bot", "chatbot"],
-      "responses": [
-        "Some of my projects include an e-commerce website, a crypto tracker, and a portfolio site with a chatbot.",
-        "I have built several projects like a crypto tracker, an e-commerce website, and a personal chatbot for my portfolio.",
-        "Currently, I am working on Consultify, along with other projects like a portfolio and a crypto tracker."
-      ]
-    },
-    "skills": {
-      "keywords": ["skills", "abilities", "proficiencies", "programming", "technologies", "tech stack", "coding"],
-      "responses": [
-        "I have skills in JavaScript, React, Node.js, Python, MongoDB, and AWS.",
-        "My technical expertise includes frontend and backend technologies like React, Node.js, and Python.",
-        "I am proficient in full-stack development with skills in JavaScript, Python, and cloud services like AWS."
-      ]
-    },
-    "hobbies": {
-      "keywords": ["hobbies", "interests", "free time", "passion", "pastime", "likes"],
-      "responses": [
-        "I enjoy programming, reading, and exploring the latest technology trends."
-      ]
-    }
-}  
+  "education": {
+    "keywords": ["education", "study", "studies", "college", "collage", "degree", "btech", "b.tech", "btech cse", "techno", "techno india", "t.i.n.j.r", "tinjr", "computer science", "engineer"],
+    "responses": [
+      "I am pursuing B.Tech in Computer Science Engineering at Techno India NJR.",
+      "Currently, I am a 3rd-year Computer Science Engineering student at Techno India NJR.",
+      "I am studying B.Tech in CSE at Techno India NJR, Udaipur."
+    ]
+  },
+  "experience": {
+    "keywords": ["experience", "work", "job", "internship", "intership", "alphaloops", "web developer", "webdev"],
+    "responses": [
+      "I interned at Alphaloops as a web developer for 3 months.",
+      "I gained professional experience as a web developer during my 3-month internship at Alphaloops.",
+      "At Alphaloops, I worked as a web developer intern and contributed to Makinzy and a game prediction model."
+    ]
+  },
+  "projects": {
+    "keywords": ["projects", "portfolio", "work", "apps", "applications", "websites", "crypto tracker", "consultify", "ecommerce", "e-commerce", "ai bot", "chatbot"],
+    "responses": [
+      "Some of my projects include an e-commerce website, a crypto tracker, and a portfolio site with a chatbot.",
+      "I have built several projects like a crypto tracker, an e-commerce website, and a personal chatbot for my portfolio.",
+      "Currently, I am working on Consultify, along with other projects like a portfolio and a crypto tracker."
+    ]
+  },
+  "skills": {
+    "keywords": ["skills", "abilities", "proficiencies", "programming", "technologies", "tech stack", "coding"],
+    "responses": [
+      "I have skills in JavaScript, React, Node.js, Python, MongoDB, and AWS.",
+      "My technical expertise includes frontend and backend technologies like React, Node.js, and Python.",
+      "I am proficient in full-stack development with skills in JavaScript, Python, and cloud services like AWS."
+    ]
+  },
+  "hobbies": {
+    "keywords": ["hobbies", "interests", "free time", "passion", "pastime", "likes"],
+    "responses": [
+      "I enjoy programming, reading, and exploring the latest technology trends."
+    ]
+  },
+  "greetings": {
+    "keywords": ["hello", "hi", "hey", "good morning", "good afternoon", "good evening", "greetings"],
+    "responses": [
+      "Hello! How can I assist you today?",
+      "Hey there! What can I help you with?",
+      "Good morning! How’s your day going?",
+      "Good evening! How can I help you today?"
+    ]
+  },
+  "how_are_you": {
+    "keywords": ["how are you", "how's it going", "how are you doing", "how do you do", "what's up"],
+    "responses": [
+      "I'm doing great, thanks for asking! How about you?",
+      "I'm doing well, how can I assist you today?",
+      "I'm good, thanks for asking! How are you doing?"
+    ]
+  },
+  "thank_you": {
+    "keywords": ["thank you", "thanks", "appreciate it"],
+    "responses": [
+      "You're welcome! I'm here to help.",
+      "No problem! Let me know if you need anything else.",
+      "Glad I could help! Feel free to ask if you have more questions."
+    ]
+  },
+  "goodbye": {
+    "keywords": ["bye", "goodbye", "see you", "take care", "bye for now"],
+    "responses": [
+      "Goodbye! Have a great day!",
+      "See you later! Take care!",
+      "Bye! If you need anything else, don’t hesitate to reach out."
+    ]
+  },
+  "sorry": {
+    "keywords": ["sorry", "apologies", "my bad"],
+    "responses": [
+      "No worries! How can I assist you further?",
+      "It's okay! How can I help you now?",
+      "No problem at all! What else can I do for you?"
+    ]
+  }
+}

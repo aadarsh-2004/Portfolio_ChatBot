@@ -13,7 +13,15 @@ const Chatbot = () => {
       text: "Hi there! I'm your assistant. How can I help you today?",
     };
     setChat([welcomeMessage]);
+
+    // Optionally play audio for welcome message
+    // playAudio(welcomeMessage.text); // Uncomment if you want to play audio for the welcome message
   }, []);
+
+  const playAudio = (audioBase64) => {
+    const audio = new Audio(`data:audio/mp3;base64,${audioBase64}`);
+    audio.play();
+  };
 
   const sendMessage = async () => {
     if (!message.trim()) return;
@@ -26,10 +34,17 @@ const Chatbot = () => {
     try {
       const response = await axios.post('http://localhost:5000/ask', { question: message });
 
+      // Add the text response to chat
       setChat([
         ...newChat,
         { sender: 'bot', text: response.data.answer },
       ]);
+
+      // If the response includes audio, play it
+      if (response.data.audio) {
+        playAudio(response.data.audio);
+      }
+
     } catch (error) {
       console.error('Error:', error);
       setChat([

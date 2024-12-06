@@ -1,7 +1,7 @@
 const express = require("express");
-const { GoogleGenerativeAI } = require("@google/generative-ai");
 const cors = require("cors");
 const fs = require("fs");
+const { generateSpeech } = require("./pollyAudio");
 
 const app = express();
 app.use(express.json());
@@ -14,10 +14,8 @@ fs.readFile("./knowledgeBase.json", "utf8", (err, data) => {
     console.error("Error loading knowledge base:", err);
   } else {
     knowledgeBase = JSON.parse(data);
-    
   }
 });
-
 
 function checkPersonalKnowledge(question) {
   for (const category in knowledgeBase) {
@@ -36,28 +34,34 @@ function checkPersonalKnowledge(question) {
   return null; // Return null if no match is found
 }
 
-
 app.post("/ask", async (req, res) => {
   const { question } = req.body;
 
   // Check personal knowledge
   const answer = checkPersonalKnowledge(question);
+  let audioData;
+
   if (answer) {
-    return res.json({ answer: answer });
+    // If the answer is found in personal knowledge, generate audio for it
+    try {
+      audioData = await generateSpeech(answer);
+      return res.json({ answer, audio: audioData });
+    } catch (audioError) {
+      console.error("Error generating audio:", audioError);
+      return res.status(500).json({ error: "Error generating the audio." });
+    }
   }
+  // If no answer is found in personal knowledge, send "Unable to understand"
+  const fallbackAnswer = "Unable to understand your question.";
 
-  // Fallback to Google Generative AI
-  try {
-    const genAI = new GoogleGenerativeAI("AIzaSyDKIFNS2G2NctUVZjyKUTohT67mKXhAgks");
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
-    const result = await model.generateContent(question);
-    const text = result.response.candidates[0].content.parts[0].text;
-
-    res.json({ answer: text });
-  } catch (error) {
-    console.error("Error generating content:", error);
-    res.status(500).json({ error: "Error generating the response." });
+  // Fallback 
+  try{
+    audioData = await generateSpeech(fallbackAnswer);
+    return res.json({ answer: fallbackAnswer, audio: audioData });
+  } 
+   catch (error) {
+    console.error("Error generating audio for fallback response:", audioError);
+    return res.status(500).json({ error: "Error generating the audio for the fallback response." });
   }
 });
 
