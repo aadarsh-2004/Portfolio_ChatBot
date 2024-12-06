@@ -4,7 +4,7 @@ const stream = require('stream');  // Import the stream module to handle streams
 const pollyClient = new PollyClient({
   region: "us-east-1",
   credentials: {
-    accessKeyId: "AKIARBNXY2IFNNH4567A", 
+    // /accessKeyId: "AKIARBNXY2IFNNH4567A", 
     secretAccessKey: "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",
   },
 });
