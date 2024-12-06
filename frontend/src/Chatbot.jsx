@@ -97,7 +97,7 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center items-center relative">
+    <div className="min-h-screen bg-white flex justify-center items-center relative">
       {/* Speak Now Popup */}
       {isRecording && (
         <div className="absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
