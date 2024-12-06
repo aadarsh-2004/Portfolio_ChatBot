@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
 const { generateSpeech } = require("./pollyAudio");
+require("dotenv").config(); 
 
 const app = express();
 app.use(express.json());
@@ -65,7 +66,7 @@ app.post("/ask", async (req, res) => {
   }
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

@@ -1,11 +1,12 @@
 const { PollyClient, SynthesizeSpeechCommand } = require("@aws-sdk/client-polly");
 const stream = require('stream');  // Import the stream module to handle streams
+require("dotenv").config();
 
 const pollyClient = new PollyClient({
   region: "us-east-1",
   credentials: {
-    accessKeyId: "AKIARBNXY2IFNNH4567A", 
-    secretAccessKey: "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",
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID, 
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   },
 });
 

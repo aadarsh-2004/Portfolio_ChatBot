@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const Chatbot = () => {
   const [message, setMessage] = useState("");
   const [chat, setChat] = useState([]);
@@ -30,7 +33,7 @@ const Chatbot = () => {
     setIsTyping(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/ask", {
+      const response = await axios.post(`${API_BASE_URL}/ask`, {
         question: message,
       });
 
@@ -83,7 +86,6 @@ const Chatbot = () => {
 
     recognition.onend = () => {
       setIsRecording(false);
-      
     };
 
     recognition.onerror = (event) => {
@@ -125,9 +127,7 @@ const Chatbot = () => {
           {chat.map((msg, idx) => (
             <div
               key={idx}
-              className={`mb-4 flex ${
-                msg.sender === "user" ? "justify-end" : "justify-start"
-              }`}
+              className={`mb-4 flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
             >
               {msg.sender === "bot" && (
                 <img
@@ -138,9 +138,9 @@ const Chatbot = () => {
               )}
               <div
                 className={`px-4 py-3 rounded-lg max-w-sm ${
-                  msg.sender === "user"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-800"
+                  msg.sender === "user" 
+                    ? "bg-blue-500 text-white slide-right"
+                    : "bg-gray-200 text-gray-800 slide-left"
                 }`}
               >
                 {msg.text}
@@ -170,7 +170,6 @@ const Chatbot = () => {
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            
             onKeyDown={handleKeyDown} // Send message on Enter
             placeholder="Type your message..."
             className="flex-grow bg-gray-200 text-gray-800 px-4 py-2 rounded-lg focus:outline-none"
